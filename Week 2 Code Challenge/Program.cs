@@ -30,7 +30,7 @@ namespace Week_2_Code_Challenge
             Console.WriteLine();
 
             //Call for the function TextStats
-            TextStats("The tenth doctor is by far my favorite. His sonic screwdriver is the cutest. He is also the most dashing.");
+            TextStats("The tenth doctor is by far my favorite. His sonic screwdriver is the cutest. I also think he is the most dashing.");
 
             //Keeps the console open
             Console.ReadKey();
@@ -77,23 +77,41 @@ namespace Week_2_Code_Challenge
             //and UPPERCASE letters
             int lowerCase = 0;
             int upperCase = 0;
-            //
-            List<char> LettersInString = new List<char>(inString.ToList());
             //Creating a for loop to run through the letters
             //in our string
             for (int i = 0; i < inString.Length; i++)
             {
+                //Making the index to find things 
+                //in the string
+                char neededLetter = inString[i];
+                //Getting the counter for lowercase letters
+                //to increase when a lowercase letter is found
+                if (neededLetter == letter)
+                {
+                    //Increasing the lowercase 
+                    //count by 1 for each lowercase
+                    //letter found
+                    lowerCase++;
+                }
+                //Getting the counter for UPPERCASE letters
+                //to increase when an UPPERCASE letter is found
+                if (char.IsUpper(neededLetter))
+                {
+                    //Increasing the UPPERCASE
+                    //count by 1 for each UPPERCASE
+                    //letter found
+                    upperCase++;
+                }
+                    
             }
-
-
-
-
-
+            //Getting the total number of lowercase
+            //and UPPERCASE letters
+            int totalNumber = lowerCase + upperCase;
             //Things printed to the console
             Console.WriteLine("Input: " + inString);
-            Console.WriteLine("Number of lowercase " + letter + "'s found: ");
-            Console.WriteLine("Number of UPPERCASE " + letter + "'s found: ");
-            Console.WriteLine("Total number of " + letter + "'s found: ");
+            Console.WriteLine("Number of lowercase " + letter + "'s found: " + lowerCase);
+            Console.WriteLine("Number of UPPERCASE " + letter + "'s found: " + upperCase);
+            Console.WriteLine("Total number of " + letter + "'s found: " + totalNumber);
             Console.WriteLine();
             
 
@@ -104,8 +122,12 @@ namespace Week_2_Code_Challenge
         {
             //Declaring function variables
             List<string> inputList = input.Split(' ').ToList();
+            //Creating our variable for vowels
             int vowelNum = 0;
+            //Creating our variable for consonants
             int consonantNum = 0;
+            //Creating our variable for
+            //special characters
             int specialChar = 0;
 
             //Setting up the counts for vowels, consonants 
@@ -126,15 +148,37 @@ namespace Week_2_Code_Challenge
                     specialChar++;
                 }
             }
+            //Variable for longest word
+            var longest = "";
+            //Variable for shortest word
+            var shortest = "  ";
+            //Creating the loop to go over all 
+            //the words in my sentences
+            foreach (string word in inputList)
+            {
+                //If word is longer that the
+                //longest length
+                if (word.Length > longest.Length)
+                {
+                        //Then that is the longest word
+                        longest = word;
+                }
+                //If word is shorter than the shortest word
+                if (word.Length < shortest.Length)
+                {
+                        //Then that is the shortest word
+                        shortest = word;
+                }
+            }
 
             //Write to the console
-            Console.WriteLine(input.Length);
-            Console.WriteLine(inputList.Count);
+            Console.WriteLine("The total number of characters: " + input.Length);
+            Console.WriteLine("The total number of words: " + inputList.Count);
             Console.WriteLine("The number of vowels is " + vowelNum);
             Console.WriteLine("The number of consonants is " + consonantNum);
             Console.WriteLine("The number of special characters is " + specialChar);
-            Console.WriteLine("Longest word: ");
-            Console.WriteLine("Shortest word: ");
+            Console.WriteLine("Longest word: " + longest);
+            Console.WriteLine("Shortest word: " + shortest);
         }
     }
 }
